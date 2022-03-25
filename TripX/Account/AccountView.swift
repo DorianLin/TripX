@@ -2,7 +2,7 @@
 //  AccountView.swift
 //  TripX
 //
-//  Created by wd on 2022/4/2.
+//  Created by JL on 2022/3/20.
 //
 
 import SwiftUI
