@@ -34,6 +34,73 @@ struct TripAddView: View {
             Group {
                 Section {
                     VStack(alignment: .leading) {
+                        Text("Trip Image")
+                            .font(.footnote)
+                            .foregroundColor(Color.gray)
+                            .padding(.horizontal, 30)
+                            .padding(.top, 10)
+
+                        Button(action: {
+                            showingPickPhotoActionSheet = true
+                        }, label: {
+                            Image(uiImage: inputImage)
+                                .resizable()
+                                .cornerRadius(6)
+                                .frame(width: 100, height: 100)
+                                .clipped()
+                            
+                        })
+                            .padding(.horizontal, 30)
+                            .actionSheet(isPresented: $showingPickPhotoActionSheet) {
+                            
+                            ActionSheet(title: Text("Photo Picker"), message: Text("Select a new photo"), buttons: [
+                                .default(Text("Camera")) {
+                                    showingPickFromCameraSheet = true
+                                },
+                                .default(Text("Album")) {
+                                    showingPickFromAlbumSheet = true
+                                },
+                                .cancel()
+                            ])
+                        }
+                        .sheet(isPresented: $showingPickFromCameraSheet) {
+                            
+                            print(inputImage)
+                            
+                        } content: {
+                            ImagePickerView(image: $inputImage, sourceType: .camera)
+                        }
+                        .sheet(isPresented: $showingPickFromAlbumSheet) {
+                            
+                            print(inputImage)
+
+                        } content: {
+                            ImagePickerView(image: $inputImage, sourceType: .photoLibrary)
+                        }
+                        Divider()
+                            .padding(.horizontal, 30)
+                    }
+                }
+                
+                Section {
+                    VStack(alignment: .leading) {
+                        Text("Trip Name")
+                            .font(.footnote)
+                            .foregroundColor(Color.gray)
+                            .padding(.horizontal, 30)
+                            .padding(.top, 10)
+                        TextField("Trip Name", text: $trip.name)
+                            .multilineTextAlignment(.leading)
+                            .modifier(Shake(shakes: nameWrong ? 2 : 0))
+                            .animation(Animation.linear, value: nameWrong)
+                            .padding(.horizontal, 30).padding(.top, 10)
+                        Divider()
+                            .padding(.horizontal, 30)
+                    }
+                }
+                                    
+                Section {
+                    VStack(alignment: .leading) {
                         Text("Start Date")
                             .font(.footnote)
                             .foregroundColor(Color.gray)
