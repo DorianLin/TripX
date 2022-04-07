@@ -37,9 +37,54 @@ class TripDatabase: NSObject {
         
         super.init()
         
+        sharedInit()
     }
     
-    
+    private func sharedInit() {
+       
+        //open db
+        do {
+            let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            print("directory： \(documentDirectory.path)")
+            let fileUrl = documentDirectory.appendingPathComponent("TripX").appendingPathExtension("sqlite3")
+            let database = try Connection(fileUrl.path)
+            self.db = database
+            
+        } catch {
+            print(error)
+        }
+        
+        let createTripsTable = self.tripsTable.create(temporary: false, ifNotExists: true, withoutRowid: false) { (tableBuilder) in
+            
+            tableBuilder.column(self.id)
+            tableBuilder.column(self.name)
+            tableBuilder.column(self.start)
+            tableBuilder.column(self.end)
+            tableBuilder.column(self.imageURL)
+            tableBuilder.column(self.location)
+        }
+        
+        let createEventsTable = self.eventsTable.create(temporary: false, ifNotExists: true, withoutRowid: false) { (tableBuilder) in
+            
+            tableBuilder.column(self.id)
+            tableBuilder.column(self.tripId)
+            tableBuilder.column(self.name)
+            tableBuilder.column(self.date)
+            tableBuilder.column(self.time)
+            tableBuilder.column(self.location)
+            tableBuilder.column(self.latitude)
+            tableBuilder.column(self.longitude)
+            tableBuilder.column(self.completed)
+        }
+        
+        do {
+            try self.db.run(createTripsTable)
+            try self.db.run(createEventsTable)
+        } catch {
+            print(error)
+        }
+    }
+
     // MARK: - Trips DB - Add Trip
 
     func add(trip: Trip, result: @escaping (_ success: Bool) -> Void) {
