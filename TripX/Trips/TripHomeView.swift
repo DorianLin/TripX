@@ -57,6 +57,34 @@ struct TripHomeView: View {
                                         
                                         Spacer()
                                     }
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 100)
+                                    .padding(.horizontal, 20)
+                                    .background(
+                                        ZStack {
+                                            selectedIndex == 0 ?
+                                            Color
+                                                .cyan
+                                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                                .padding(.horizontal, 30)
+                                                .padding(.vertical, 20)
+                                            :
+                                            Color
+                                                .gray
+                                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                                .padding(.horizontal, 30)
+                                                .padding(.vertical, 20)
+                                        VStack {
+                                            // empty VStack for the blur
+                                        }
+                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 20))
+                                    },
+                                        alignment: .leading
+                                    )
+                                    .shadow(color: .black.opacity(0.1), radius: 20, x: 5, y: 5)
+                                    .shadow(color: .black.opacity(0.1), radius: 1, x: 1, y: 1)
+                                    .shadow(color: .white.opacity(1), radius: 5, x: -1, y: -1)
                                 }
                             }
                         }
