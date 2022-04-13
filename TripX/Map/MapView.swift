@@ -75,6 +75,95 @@ struct MapView: UIViewRepresentable {
         return MapViewCoordinator(self)
     }
     
+    func displayTripEventsRoute(events: [Event]) {
+        
+        guard events.count > 1 else {
+            return
+        }
+        
+        let originLocation = events.first!
+        let destinationLocation = events.last!
+        
+        var waypoints = ""
+        if events.count > 2 {//waypoints > 0
+            for event in events[1..<events.count-1] {
+                if waypoints.isEmpty {
+                    waypoints = "&waypoints=via:\(event.latitude),\(event.longitude)"
+                    continue
+                }
+                waypoints += "|via:\(event.latitude),\(event.longitude)"
+            }
+        }
+        print("waypoints:  \(waypoints)")
+        
+//          let url = NSURL(string: "\("https://maps.googleapis.com/maps/api/directions/json")?origin=\("17.521100"),\("78.452854")&destination=\("15.1393932"),\("76.9214428")")
+//          let url = NSURL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=Machilipatnam&destination=Vijayawada&mode=driving")
+
+        var urlPath = "\("https://maps.googleapis.com/maps/api/directions/json")?origin=\(originLocation.latitude),\(originLocation.longitude)&destination=\(destinationLocation.latitude),\(destinationLocation.longitude)"
+                    
+        if !waypoints.isEmpty {
+            urlPath += waypoints
+        }
+        urlPath += "&key=\(googleMapKey)"
+
+        let task = URLSession.shared.dataTask(with: URL(string: urlPath)!) { (data, response, error) -> Void in
+
+            do {
+                if data != nil {
+                    let dic = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableLeaves) as!  [String:AnyObject]
+
+                    let status = dic["status"] as! String
+                    var routesArray:String!
+                    
+                    //no search results
+                    guard !status.elementsEqual("ZERO_RESULTS") else {
+                        
+                        DispatchQueue.main.async {
+                            Toast.text("Find zero results for your trip route").show(haptic: .error)
+                        }
+                        return
+                    }
+                    
+                    if status == "OK" {
+                        routesArray = (((dic["routes"]!as! [Any])[0] as! [String:Any])["overview_polyline"] as! [String:Any])["points"] as? String
+                    }
+
+                    DispatchQueue.main.async {
+                        print("⚠️Start route planning")
+                        let path = GMSPath.init(fromEncodedPath: routesArray!)
+                        let singleLine = GMSPolyline.init(path: path)
+                        singleLine.strokeWidth = 6.0
+                        singleLine.strokeColor = AppUIColorBlue
+                        singleLine.map = self.gmsMapView
+                        
+                        if let legs = (((dic["routes"] as? [Any])?[0] as? [String:Any])?["legs"] as? [[String: Any]])  {
+                            let first = legs[0]
+                            let distance = (first["distance"] as! [String: Any])["text"] as! String
+                            let duration = (first["duration"] as! [String: Any])["text"] as! String
+                            let title = "distance: \(distance) \nduration: \(duration)"
+                            print("Route detail：\(title)")
+
+                            let middleIndex = (path?.count() ?? 0)/2
+                            if middleIndex > 0 {
+                                let location = path?.coordinate(at: middleIndex)
+                                let marker = GMSMarker(position: location!)
+                                marker.icon = createImage(title)
+//                                let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: 150))
+//                                titleLabel.font = UIFont.systemFont(ofSize: 12)
+//                                titleLabel.textAlignment = .left
+//                                titleLabel.text = title
+//                                marker.iconView = titleLabel
+                                marker.map = gmsMapView
+                            }
+                        }
+                    }
+                }
+            } catch {
+                print("request direction error == \(error)")
+            }
+        }
+        task.resume()
+    }
     
     func createImage(_ text: String) -> UIImage {
 
