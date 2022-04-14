@@ -13,9 +13,13 @@ struct TripXApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
+    @StateObject private var viewRouter = ViewRouter()
 
     var body: some Scene {
-    
+        WindowGroup {
+            TabbarContainerView()
+                .environmentObject(viewRouter)
+        }
     }
 }
 

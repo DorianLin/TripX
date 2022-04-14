@@ -2,7 +2,7 @@
 //  TripEventView.swift
 //  TripX
 //
-//  Created by JL on 2022/3/27.
+//  Created by JL on 2022/3/22.
 //
 
 import SwiftUI
@@ -10,10 +10,20 @@ import SwiftUI
 struct TripEventView: View {
     
     let trip: Trip
-        
+    
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var viewmodel: EventViewModel
+    @EnvironmentObject private var viewRouter: ViewRouter
+
+    @State private var presentRouteMap = false
+
+    @State private var addNewEvent = false
+    @State private var pushToMapDisplay: Bool = false
+    
     var body: some View {
         ScrollView {
             if viewmodel.events.count > 0 {
+                
                 ForEach(viewmodel.routeGroupByDate.keys.sorted(by: >), id: \.self) { key in
                     Section(header:
                                 HStack {
@@ -64,6 +74,15 @@ struct TripEventView: View {
         }
     }
     
+    private func showRoute(events: [Event], in specialDay: String) {
+        
+        viewmodel.routeDate = specialDay
+        viewmodel.routeEvents = events.filter({ !$0.completed })
+        
+//        viewRouter.current = .map
+        print("Displaying routes")
+        presentRouteMap.toggle()
+    }
 }
 
 struct TripEventView_Previews: PreviewProvider {
