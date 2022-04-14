@@ -45,7 +45,7 @@ class TripDatabase: NSObject {
         //open db
         do {
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            print("directory： \(documentDirectory.path)")
+            print("Print directory： \(documentDirectory.path)")
             let fileUrl = documentDirectory.appendingPathComponent("TripX").appendingPathExtension("sqlite3")
             let database = try Connection(fileUrl.path)
             self.db = database
