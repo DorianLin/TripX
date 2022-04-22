@@ -24,7 +24,27 @@ struct EventItemView: View {
                     .resizable()
                     .frame(width: 30, height: 30, alignment: .center)
             }
-
+            
+            NavigationLink(destination: EventAddView(trip: trip, event: event), isActive: $navigateToModifyEvent) {
+                
+                VStack(alignment: .leading) {
+                    Text(event.name)
+                        .font(.title3)
+                        .foregroundColor(event.completed ? .gray : AppThemeColor)
+                    Text(DateFormatter.tripEventTimeFormatter.string(from: event.time))
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                    Text(event.location)
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                    Divider().background(Color.blue)
+                }
+                .padding(.leading, 10)
+                .padding(.vertical, 5)
+                .onTapGesture {
+                    navigateToModifyEvent.toggle()
+                }
+            }
         }
         .padding(.horizontal, 20)
         .onAppear {
