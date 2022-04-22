@@ -61,6 +61,7 @@ struct EventItemView: View {
 struct EventItemView_Previews: PreviewProvider {
     static var previews: some View {
         let trip = Trip(name: "Chicago", start: Date.now.addingTimeInterval(86400), end: Date.now.addingTimeInterval(3*86400), location: "Chicago", imageURL: "")
+        let event = Event(tripId: "1", name: "The Art Institute of Chicago", date: Date().addingTimeInterval(86400), time: Date().addingTimeInterval(86400), location: "South Michigan Avenue, 芝加哥伊利諾伊州美國", latitude: 41.879800158879405, longitude: -87.62374548861116)
         EventItemView(trip: trip, event: event)
     }
 }
