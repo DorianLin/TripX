@@ -38,11 +38,11 @@ struct TabbarContainerView: View {
             }
             .tag(AppTab.trip)
 
-            MapHomeView().tabItem {
-                Image(systemName: "map.fill")
-                Text("Map")
-            }
-            .tag(AppTab.map)
+//            MapHomeView().tabItem {
+//                Image(systemName: "map.fill")
+//                Text("Map")
+//            }
+//            .tag(AppTab.map)
 
             AccountView().tabItem {
                 Image(systemName: "person.crop.circle")

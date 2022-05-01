@@ -30,6 +30,7 @@ struct MapHomeView: View {
                             presentationMode.wrappedValue.dismiss()
                         }) {
                             Image(systemName: "xmark.circle.fill")
+                                .font(.system(size: 30, weight: .bold))
                         }
                         .frame(width: 40, height: 40, alignment: .center)
                     }

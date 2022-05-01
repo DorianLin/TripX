@@ -8,5 +8,5 @@ target 'TripX' do
   pod 'SQLite.swift'
   pod 'AlertToast'
   pod "ToastViewSwift"
-  
+  pod 'Google-Mobile-Ads-SDK'
 end

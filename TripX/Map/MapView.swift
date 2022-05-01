@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// https://developers.google.com/codelabs/maps-platform/maps-platform-ios-swiftui#6
 
 import GoogleMaps
 import SwiftUI
@@ -24,6 +25,7 @@ struct MapView: UIViewRepresentable {
 
     var onAnimationEnded: () -> ()
     
+    // https://developers.google.com/maps/documentation/ios-sdk/reference/interface_g_m_s_map_view
     private let gmsMapView = GMSMapView(frame: .zero)
     private let defaultZoomLevel: Float = 16
 
@@ -44,6 +46,7 @@ struct MapView: UIViewRepresentable {
         
         var bounds = GMSCoordinateBounds()
 
+        // https://developers.google.com/maps/documentation/ios-sdk/reference/interface_g_m_s_marker
         let markers: [GMSMarker] = viewmodel.routeEvents.map {
             let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude))
           marker.title = $0.location
@@ -99,6 +102,7 @@ struct MapView: UIViewRepresentable {
 //          let url = NSURL(string: "\("https://maps.googleapis.com/maps/api/directions/json")?origin=\("17.521100"),\("78.452854")&destination=\("15.1393932"),\("76.9214428")")
 //          let url = NSURL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=Machilipatnam&destination=Vijayawada&mode=driving")
 
+        // API: https://developers.google.com/maps/documentation/directions/get-directions
         var urlPath = "\("https://maps.googleapis.com/maps/api/directions/json")?origin=\(originLocation.latitude),\(originLocation.longitude)&destination=\(destinationLocation.latitude),\(destinationLocation.longitude)"
                     
         if !waypoints.isEmpty {
@@ -137,6 +141,14 @@ struct MapView: UIViewRepresentable {
                         singleLine.map = self.gmsMapView
                         
                         if let legs = (((dic["routes"] as? [Any])?[0] as? [String:Any])?["legs"] as? [[String: Any]])  {
+//                            var title = ""
+//                            print(legs.count)
+//                            for i in 0..<(legs.count) {
+//                                let d = (legs[i]["duration"] as! [String: Any])["text"] as! String
+////                                let origin = (legs[i]["start_address"] as! [String: Any])["text"] as! String
+////                                let dest = (legs[i]["end_address"] as! [String: Any])["text"] as! String
+//                                title += "Leg\(i), duration: \(d)"
+//                            }
                             let first = legs[0]
                             let distance = (first["distance"] as! [String: Any])["text"] as! String
                             let duration = (first["duration"] as! [String: Any])["text"] as! String

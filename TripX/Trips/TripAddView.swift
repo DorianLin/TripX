@@ -10,6 +10,7 @@ import AlertToast
 
 struct TripAddView: View {
     
+    // https://developer.apple.com/documentation/swiftui/environmentvalues/ispresented
     @Environment(\.presentationMode) var presentationMode
 
     @ObservedObject var viewmodel: TripViewModel

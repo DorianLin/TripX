@@ -26,7 +26,7 @@ struct TripEventView: View {
                 
                 ForEach(viewmodel.routeGroupByDate.keys.sorted(by: >), id: \.self) { key in
                     Section(header:
-                                HStack {
+                                HStack { 
                         Text(key).foregroundColor(.blue).font(.title3)
                         Spacer()
                         Image(systemName: "chevron.right.circle")

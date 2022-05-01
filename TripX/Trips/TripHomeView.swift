@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
 
 struct TripHomeView: View {
     init(viewmodel: TripViewModel) {
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+
         self.viewmodel = viewmodel
         UITableViewCell.appearance().selectionStyle = .none
     }
@@ -34,7 +37,7 @@ struct TripHomeView: View {
                     
                     Spacer().frame(height: 20)
                     
-                    let showTrips = selectedIndex == 0 ? viewmodel.trips.filter({$0.start.timeIntervalSince1970 >= Date().timeIntervalSince1970 }) :  viewmodel.trips.filter({$0.start.timeIntervalSince1970 < Date().timeIntervalSince1970 })
+                    let showTrips = selectedIndex == 0 ? viewmodel.trips.filter({$0.end.timeIntervalSince1970 >= Date().timeIntervalSince1970 }) :  viewmodel.trips.filter({$0.end.timeIntervalSince1970 < Date().timeIntervalSince1970 })
                     
                     if viewmodel.trips.count > 0 {
                         LazyVStack(alignment: .leading, spacing: 10) {
@@ -97,6 +100,8 @@ struct TripHomeView: View {
                             .frame(height: 300)
                     }
                 }
+                Spacer()
+                BannerAd(unitID: "ca-app-pub-3940256099942544/2934735716")
             }
             .navigationTitle("Trips")
             .toolbar {
