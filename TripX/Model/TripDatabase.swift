@@ -8,6 +8,7 @@
 import UIKit
 import SQLite
 
+// https://morioh.com/p/cb7e610d078c
 
 class TripDatabase: NSObject {
 
@@ -55,7 +56,6 @@ class TripDatabase: NSObject {
         }
         
         let createTripsTable = self.tripsTable.create(temporary: false, ifNotExists: true, withoutRowid: false) { (tableBuilder) in
-            
             tableBuilder.column(self.id)
             tableBuilder.column(self.name)
             tableBuilder.column(self.start)
@@ -65,7 +65,6 @@ class TripDatabase: NSObject {
         }
         
         let createEventsTable = self.eventsTable.create(temporary: false, ifNotExists: true, withoutRowid: false) { (tableBuilder) in
-            
             tableBuilder.column(self.id)
             tableBuilder.column(self.tripId)
             tableBuilder.column(self.name)
@@ -86,7 +85,8 @@ class TripDatabase: NSObject {
     }
 
     // MARK: - Trips DB - Add Trip
-
+    // https://imyuewu.github.io/2019/05/02/Swift基础-Result介绍/
+    
     func add(trip: Trip, result: @escaping (_ success: Bool) -> Void) {
         
         let insert = self.tripsTable.insert(self.id <- trip.id,

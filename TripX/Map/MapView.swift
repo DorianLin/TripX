@@ -160,11 +160,6 @@ struct MapView: UIViewRepresentable {
                                 let location = path?.coordinate(at: middleIndex)
                                 let marker = GMSMarker(position: location!)
                                 marker.icon = createImage(title)
-//                                let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: 150))
-//                                titleLabel.font = UIFont.systemFont(ofSize: 12)
-//                                titleLabel.textAlignment = .left
-//                                titleLabel.text = title
-//                                marker.iconView = titleLabel
                                 marker.map = gmsMapView
                             }
                         }

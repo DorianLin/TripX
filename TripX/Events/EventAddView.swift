@@ -78,7 +78,7 @@ struct EventAddView: View {
 
             Section {
                 HStack {
-                    Image(systemName: "location.circle.fill")
+                    Image(systemName: "mappin.circle.fill")
                         .resizable()
                         .frame(width: 30, height: 30)
                         .foregroundColor(AppColorBlue)
@@ -98,6 +98,32 @@ struct EventAddView: View {
                 .animation(Animation.linear, value: locationWrong)
                 .padding(.vertical, 10)
             }
+            
+            Section {
+                HStack {
+                    Image(systemName: "location.circle.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(AppColorBlue)
+                        .clipped()
+                        .padding(.horizontal, 5)
+
+                    Button(
+                        "Navigate to location",
+                    action: {
+                        let lat = event.latitude
+                        let lon = event.longitude
+                        if (lat != 0 && lon != 0) {
+                            let url = URL(string: "maps://?saddr=&daddr=\(lat),\(lon)")
+                            if UIApplication.shared.canOpenURL(url!) {
+                                  UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                            }
+                        }
+                        
+                    })
+                }
+            }
+            .padding(.vertical, 10)
         }
         .navigationTitle(event.tripId.isEmpty ? "Add an Event": "Modify the Event")
         .toolbar {
