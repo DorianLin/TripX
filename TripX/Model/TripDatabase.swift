@@ -178,8 +178,8 @@ class TripDatabase: NSObject {
                                      self.date <- "\(Int(event.date.timeIntervalSince1970))",
                                      self.time <- "\(Int(event.time.timeIntervalSince1970))",
                                     self.location <- event.location,
-                                     self.latitude <- "\(Int(event.latitude))",
-                                     self.longitude <- "\(Int(event.longitude))", self.completed <- event.completed)
+                                     self.latitude <- "\(Double(event.latitude))",
+                                     self.longitude <- "\(Double(event.longitude))", self.completed <- event.completed)
         
         do {
             try self.db.run(updateItem)

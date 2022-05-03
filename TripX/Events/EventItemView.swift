@@ -49,7 +49,7 @@ struct EventItemView: View {
         .padding(.horizontal, 20)
         .onAppear {
             print("event == \(event.name)")
-            print("event time ==\(event.time)")
+            print("event coord ==\(event.longitude), \(event.latitude)")
         }
     }
     

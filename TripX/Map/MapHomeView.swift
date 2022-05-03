@@ -37,11 +37,11 @@ struct MapHomeView: View {
                     .frame(maxWidth: .infinity)
                     
                     HStack {
-                        Button(action: {
-                            viewmodel.preparePreviousRoute()
-                        }) {
-                            Image(systemName: "chevron.left")
-                        }
+//                        Button(action: {
+//                            viewmodel.preparePreviousRoute()
+//                        }) {
+//                            Image(systemName: "chevron.left")
+//                        }
                         
                         Text(viewmodel.routeDate)
                             .padding(.horizontal)
@@ -52,11 +52,11 @@ struct MapHomeView: View {
                             )
                             .frame(height: 60)
                         
-                        Button(action: {
-                            viewmodel.prepareNextRoute()
-                        }) {
-                            Image(systemName: "chevron.right")
-                        }
+//                        Button(action: {
+//                            viewmodel.prepareNextRoute()
+//                        }) {
+//                            Image(systemName: "chevron.right")
+//                        }
                     }
                     .padding(.top, -10)
                 }

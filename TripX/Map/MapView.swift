@@ -71,15 +71,16 @@ struct MapView: UIViewRepresentable {
 //        }
         
         print("update mapview：updateUIView")
-        displayTripEventsRoute(events: viewmodel.routeEvents)
+        displayTripEventsRoute(events_unsort: viewmodel.routeEvents)
     }
 
     func makeCoordinator() -> MapViewCoordinator {
         return MapViewCoordinator(self)
     }
     
-    func displayTripEventsRoute(events: [Event]) {
-        
+    func displayTripEventsRoute(events_unsort: [Event]) {
+        let events = events_unsort.sorted(by: { $0.time.timeIntervalSince1970 < $1.time.timeIntervalSince1970 })
+
         guard events.count > 1 else {
             return
         }
@@ -91,26 +92,28 @@ struct MapView: UIViewRepresentable {
         if events.count > 2 {//waypoints > 0
             for event in events[1..<events.count-1] {
                 if waypoints.isEmpty {
-                    waypoints = "&waypoints=via:\(event.latitude),\(event.longitude)"
+                    waypoints = "&waypoints=\(event.latitude),\(event.longitude)"
                     continue
                 }
-                waypoints += "|via:\(event.latitude),\(event.longitude)"
+                waypoints += "|\(event.latitude),\(event.longitude)"
             }
         }
         print("waypoints:  \(waypoints)")
-        
-//          let url = NSURL(string: "\("https://maps.googleapis.com/maps/api/directions/json")?origin=\("17.521100"),\("78.452854")&destination=\("15.1393932"),\("76.9214428")")
-//          let url = NSURL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=Machilipatnam&destination=Vijayawada&mode=driving")
-
-        // API: https://developers.google.com/maps/documentation/directions/get-directions
         var urlPath = "\("https://maps.googleapis.com/maps/api/directions/json")?origin=\(originLocation.latitude),\(originLocation.longitude)&destination=\(destinationLocation.latitude),\(destinationLocation.longitude)"
                     
         if !waypoints.isEmpty {
             urlPath += waypoints
         }
         urlPath += "&key=\(googleMapKey)"
+        let newPath = urlPath.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        print("********* \(urlPath)")
+ 
+        guard let url = URL(string: newPath ?? "") else{
+            print("Fail to generate URL")
+                return
+            }
 
-        let task = URLSession.shared.dataTask(with: URL(string: urlPath)!) { (data, response, error) -> Void in
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) -> Void in
 
             do {
                 if data != nil {
@@ -149,17 +152,23 @@ struct MapView: UIViewRepresentable {
 ////                                let dest = (legs[i]["end_address"] as! [String: Any])["text"] as! String
 //                                title += "Leg\(i), duration: \(d)"
 //                            }
-                            let first = legs[0]
-                            let distance = (first["distance"] as! [String: Any])["text"] as! String
-                            let duration = (first["duration"] as! [String: Any])["text"] as! String
-                            let title = "distance: \(distance) \nduration: \(duration)"
+                            var title = ""
+                            for i in 0..<events.count-1 {
+                                let d = (legs[i]["duration"] as! [String: Any])["text"] as! String
+                                title += events[i].name + " - " + events[i+1].name + ": " + d + "\n"
+                                
+                            }
+//                            let first = legs[0]
+//                            let distance = (first["distance"] as! [String: Any])["text"] as! String
+//                            let duration = (first["duration"] as! [String: Any])["text"] as! String
+////                            let title = "distance: \(distance) \nduration: \(duration)"
                             print("Route detail：\(title)")
 
                             let middleIndex = (path?.count() ?? 0)/2
                             if middleIndex > 0 {
                                 let location = path?.coordinate(at: middleIndex)
                                 let marker = GMSMarker(position: location!)
-                                marker.icon = createImage(title)
+                                marker.icon = createImage(title, rowInt: events.count-1)
                                 marker.map = gmsMapView
                             }
                         }
@@ -172,23 +181,23 @@ struct MapView: UIViewRepresentable {
         task.resume()
     }
     
-    func createImage(_ text: String) -> UIImage {
+    func createImage(_ text: String?, rowInt: Int? = 2) -> UIImage {
 
-        let color = UIColor.white
+        let color = UIColor.black
         // select needed color
 
         // the string to colorize
         let attrs: [NSAttributedString.Key: Any] = [.foregroundColor: color, .font: UIFont.boldSystemFont(ofSize: 12)]
-        let attrStr = NSAttributedString(string: text, attributes: attrs)
+        let attrStr = NSAttributedString(string: text ?? "", attributes: attrs)
         // add Font according to your need
-        let image = UIImage(named: "marker_bubble")!
+        // let image = UIImage(named: "marker_bubble")!
         // The image on which text has to be added
-        
-        let width = 120.0
-        let height = 120.0
-        UIGraphicsBeginImageContext(CGSize(width: 150, height: 150))
-        image.draw(in: CGRect(x: CGFloat(0), y: CGFloat(0), width: width, height: height))
-        let rect = CGRect(x: ceil(15/120.0*width), y: ceil(25/120.0*height), width: ceil(90/120.0*width), height: ceil(65/120.0*height))
+        let row = Double(rowInt ?? 2)
+        let width = 250.0
+        let height = 40 * row
+        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+        // image.draw(in: CGRect(x: CGFloat(0), y: CGFloat(0), width: width, height: height))
+        let rect = CGRect(x: 0, y: 0, width: width, height: height)
 
         attrStr.draw(in: rect)
 

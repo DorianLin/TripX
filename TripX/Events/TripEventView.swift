@@ -36,10 +36,9 @@ struct TripEventView: View {
                             .tint(.blue)
                         
                     }
-                                .padding(.horizontal, 20)
-                                .padding(.top, 10)
-                                .onTapGesture(perform: {
-                        
+                    .padding(.horizontal, 20)
+                    .padding(.top, 10)
+                    .onTapGesture(perform: {
                         showRoute(events: viewmodel.routeGroupByDate[key]!, in: key)
                     })
                     ) {

@@ -195,6 +195,7 @@ struct EventAddView: View {
             }
             return
         }
+        print("before: \(event.longitude) + \(event.latitude)")
                 
         TripDatabase.shared.update(event: event) { success in
             if success {
@@ -206,6 +207,7 @@ struct EventAddView: View {
                 print("add event into database failed")
             }
         }
+        print("after: \(event.longitude) + \(event.latitude)")
     }
 }
 

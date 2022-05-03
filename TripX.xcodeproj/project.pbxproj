@@ -26,10 +26,7 @@
 		74E7FC6728096F4B00A18AA5 /* CLLocationCoordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7FC5A28096F4B00A18AA5 /* CLLocationCoordinate2D.swift */; };
 		74E7FC6828096F4B00A18AA5 /* MapKitSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E7FC5B28096F4B00A18AA5 /* MapKitSearchViewController.xib */; };
 		74E7FC6C280A67C600A18AA5 /* CommonSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7FC6B280A67C600A18AA5 /* CommonSettings.swift */; };
-		74E7FC6E280A72C500A18AA5 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7FC6D280A72C500A18AA5 /* MapViewModel.swift */; };
 		74E7FC70280AC76F00A18AA5 /* EventItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7FC6F280AC76F00A18AA5 /* EventItemView.swift */; };
-		74E7FC72280D642A00A18AA5 /* TripTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7FC71280D642A00A18AA5 /* TripTabView.swift */; };
-		74E7FC74280D646600A18AA5 /* TripTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7FC73280D646600A18AA5 /* TripTabBarController.swift */; };
 		76494FDB27F7F1FF0056BACA /* TripsGoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76494FDA27F7F1FF0056BACA /* TripsGoApp.swift */; };
 		76494FDF27F7F2040056BACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76494FDE27F7F2040056BACA /* Assets.xcassets */; };
 		76494FE227F7F2040056BACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76494FE127F7F2040056BACA /* Preview Assets.xcassets */; };
@@ -43,6 +40,7 @@
 		7649500327F82CC60056BACA /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649500227F82CC60056BACA /* TripModel.swift */; };
 		7649500527F82CCA0056BACA /* TripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649500427F82CCA0056BACA /* TripViewModel.swift */; };
 		7649500727F831E90056BACA /* TripDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649500627F831E90056BACA /* TripDatabase.swift */; };
+		98737712281E6ED6005CCDB4 /* BannerAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98737711281E6ED6005CCDB4 /* BannerAd.swift */; };
 		C7592C8FD144214A836DFE5F /* Pods_TripX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C9B1434873A26FC6094A7D /* Pods_TripX.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,10 +68,7 @@
 		74E7FC5B28096F4B00A18AA5 /* MapKitSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapKitSearchViewController.xib; sourceTree = "<group>"; };
 		74E7FC6A28098C8A00A18AA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		74E7FC6B280A67C600A18AA5 /* CommonSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSettings.swift; sourceTree = "<group>"; };
-		74E7FC6D280A72C500A18AA5 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		74E7FC6F280AC76F00A18AA5 /* EventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItemView.swift; sourceTree = "<group>"; };
-		74E7FC71280D642A00A18AA5 /* TripTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTabView.swift; sourceTree = "<group>"; };
-		74E7FC73280D646600A18AA5 /* TripTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTabBarController.swift; sourceTree = "<group>"; };
 		76494FD727F7F1FF0056BACA /* TripX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76494FDA27F7F1FF0056BACA /* TripsGoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsGoApp.swift; sourceTree = "<group>"; };
 		76494FDE27F7F2040056BACA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,6 +83,7 @@
 		7649500227F82CC60056BACA /* TripModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
 		7649500427F82CCA0056BACA /* TripViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripViewModel.swift; sourceTree = "<group>"; };
 		7649500627F831E90056BACA /* TripDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDatabase.swift; sourceTree = "<group>"; };
+		98737711281E6ED6005CCDB4 /* BannerAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAd.swift; sourceTree = "<group>"; };
 		B10FB6CD45DDB133508587B8 /* Pods-TripX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripX.release.xcconfig"; path = "Target Support Files/Pods-TripX/Pods-TripX.release.xcconfig"; sourceTree = "<group>"; };
 		F4E03BFBAD2FEBA923452A88 /* Pods-TripsGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripsGo.debug.xcconfig"; path = "Target Support Files/Pods-TripsGo/Pods-TripsGo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -239,7 +235,6 @@
 			children = (
 				76494FF927F801AD0056BACA /* MapHomeView.swift */,
 				74E4A0CB27F96C99004807A3 /* MapView.swift */,
-				74E7FC6D280A72C500A18AA5 /* MapViewModel.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -248,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				76494FFB27F801F00056BACA /* AccountView.swift */,
+				98737711281E6ED6005CCDB4 /* BannerAd.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -256,8 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				76494FED27F7F4A40056BACA /* TabbarContainerView.swift */,
-				74E7FC71280D642A00A18AA5 /* TripTabView.swift */,
-				74E7FC73280D646600A18AA5 /* TripTabBarController.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -417,7 +411,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74E7FC72280D642A00A18AA5 /* TripTabView.swift in Sources */,
 				7649500327F82CC60056BACA /* TripModel.swift in Sources */,
 				76494FF827F8017E0056BACA /* TripHomeView.swift in Sources */,
 				74E4A0D027F9EAC7004807A3 /* TripEventView.swift in Sources */,
@@ -426,6 +419,7 @@
 				74E7FC6328096F4B00A18AA5 /* BottomSheetView.swift in Sources */,
 				74E4A0CE27F9A3A0004807A3 /* ImagePickerView.swift in Sources */,
 				74E7FC292808576400A18AA5 /* EventAddressSearchView.swift in Sources */,
+				98737712281E6ED6005CCDB4 /* BannerAd.swift in Sources */,
 				74E7FC6528096F4B00A18AA5 /* CLPlacemark.swift in Sources */,
 				74E4A0D527F9F3B3004807A3 /* EventAddView.swift in Sources */,
 				74E7FC6728096F4B00A18AA5 /* CLLocationCoordinate2D.swift in Sources */,
@@ -439,14 +433,12 @@
 				76494FFC27F801F00056BACA /* AccountView.swift in Sources */,
 				76494FF627F7F54D0056BACA /* Date+.swift in Sources */,
 				74E7FC5D28096F4B00A18AA5 /* MapKitSearchViewController.swift in Sources */,
-				74E7FC74280D646600A18AA5 /* TripTabBarController.swift in Sources */,
 				74E7FC6628096F4B00A18AA5 /* MKMapView.swift in Sources */,
 				76494FFE27F825A40056BACA /* TripAddView.swift in Sources */,
 				74E4A0D227F9EC21004807A3 /* EventViewModel.swift in Sources */,
 				76494FF027F7F4A40056BACA /* TabbarContainerView.swift in Sources */,
 				76494FDB27F7F1FF0056BACA /* TripsGoApp.swift in Sources */,
 				74E7FC70280AC76F00A18AA5 /* EventItemView.swift in Sources */,
-				74E7FC6E280A72C500A18AA5 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,13 +584,14 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ios.tripx;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dorian.tripxmvp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -629,13 +622,14 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ios.tripx;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dorian.tripxmvp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
