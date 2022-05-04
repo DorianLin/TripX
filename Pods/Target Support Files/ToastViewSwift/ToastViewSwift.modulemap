@@ -1,0 +1,6 @@
+framework module ToastViewSwift {
+  umbrella header "ToastViewSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}
